@@ -41,7 +41,7 @@ export class AuthService {
 
   async getCurrectUser() {
     try {
-      return await this.account.get();
+      return await this.account.get()
     } catch (error) {
       throw error;
     }
