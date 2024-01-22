@@ -1,17 +1,28 @@
 import React, {useEffect, useState} from 'react'
 import appwriteService from '../appwrite/config';
 import {Container, PostCard} from '../components/index';
+import {useSelector, useDispatch } from 'react-redux';
+import {getIntialStateAsync} from '../store/postSlice';
 
 function Home() {
-    const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
+    // const [posts, setPosts] = useState([]);
+    const posts = useSelector((state)=> state.post.posts);
+
+
+    // useEffect(()=> {
+    //    appwriteService.getPosts()
+    //    .then((posts)=> {
+    //     if(posts) {
+    //         setPosts(posts.documents);
+    //     }
+    //    })
+    // },[])
+
+
 
     useEffect(()=> {
-       appwriteService.getPosts()
-       .then((posts)=> {
-        if(posts) {
-            setPosts(posts.documents);
-        }
-       })
+       dispatch(getIntialStateAsync())
     },[])
 
 
