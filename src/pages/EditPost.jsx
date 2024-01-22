@@ -18,7 +18,9 @@ useEffect(()=> {
         if(post) {
             setPost(post);
         }
+        
     })
+    
   }else{
     navigate('/');
   }

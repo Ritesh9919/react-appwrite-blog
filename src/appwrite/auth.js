@@ -13,6 +13,7 @@ export class AuthService {
   }
 
   async createAccount({ email, password, name }) {
+    console.log(email);
     try {
       const userAccount = await this.account.create(
         ID.unique(),
@@ -22,7 +23,7 @@ export class AuthService {
       );
       if (userAccount) {
         // call another method
-        this.login(email, password);
+        return this.login({email, password});
       } else {
         return userAccount;
       }
@@ -31,7 +32,7 @@ export class AuthService {
     }
   }
 
-  async login(email, password) {
+  async login({email, password}) {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {

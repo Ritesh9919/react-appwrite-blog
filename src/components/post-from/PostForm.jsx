@@ -20,11 +20,12 @@ function PostForm({post}) {
   const userData = useSelector((state)=> state.auth.userData);
 
   const submit = async(data) => {
+    console.log(data);
      if(post) {
-        const file = await data.image[0] ? appwriteService.uploadFile(data.image[0]):null;
+        const file = await data.image[0] ? await appwriteService.uploadFile(data.image[0]):null;
 
         if(file) {
-            await appwriteService.deleteFile(post.featuredImage);
+            appwriteService.deleteFile(post.featuredImage);
         }
 
         const dbPost = await appwriteService.updatePost(post.$id, {
@@ -36,7 +37,7 @@ function PostForm({post}) {
             navigate(`/post/${dbPost.$id}`);
         }
      }else {
-        const file = await data.image[0] ? appwriteService.uploadFile(data.image[0]): null;
+        const file = await data.image[0] ? await appwriteService.uploadFile(data.image[0]): null;
         
         if(file) {
             const fileId = file.$id;
@@ -132,3 +133,7 @@ function PostForm({post}) {
 }
 
 export default PostForm
+
+
+
+

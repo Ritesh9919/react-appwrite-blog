@@ -14,11 +14,11 @@ function RTE({name, label, control, defaultValue=""}) {
     <Controller
       name={name || "content"}
       control={control}
-      render={({field:{onchange}})=> (
+      render={({field:{onChange}})=> (
         <Editor
         initialValue={defaultValue}
         init={{
-            initialValue:{defaultValue},
+            initialValue:defaultValue,
             height:500,
             menubar:true,
             plugins:[
@@ -48,7 +48,7 @@ function RTE({name, label, control, defaultValue=""}) {
             content_style:"body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
 
         }}
-           onEditorChange={onchange}
+           onEditorChange={onChange}
         />
       )}
 
